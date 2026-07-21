@@ -272,11 +272,7 @@ margin-bottom:18px;
 display:block;
 text-align:center;
 padding:14px;
-background:linear-gradient(
-90deg,
-#a00000,
-#ff0000
-);
+background:var(--gradient);
 color:white;
 text-decoration:none;
 border-radius:14px;
