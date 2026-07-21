@@ -6,8 +6,10 @@ font-family:'Cairo',sans-serif;
 }
 
 :root{
---red:#d40000;
---red-light:#ff2d2d;
+--red:#ffcc29;
+--red-light:#ffcc29;
+--orange:#ff7a00;
+--purple:#b347ff;
 --bg:#050505;
 --card:#101010;
 --border:#222;
@@ -33,7 +35,7 @@ width:500px;
 height:500px;
 background:radial-gradient(
 circle,
-rgba(212,0,0,.35),
+rgba(255,204,41,.35),
 transparent 70%
 );
 z-index:-1;
@@ -48,7 +50,7 @@ width:500px;
 height:500px;
 background:radial-gradient(
 circle,
-rgba(212,0,0,.15),
+rgba(255,204,41,.15),
 transparent 70%
 );
 z-index:-1;
@@ -67,7 +69,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 25px;
-box-shadow:0 0 20px rgba(255,0,0,.08);
+box-shadow:0 0 20px rgba(255,204,41,.18);
 }
 
 .logo{
@@ -139,7 +141,7 @@ transition:.3s;
 }
 
 .sidebar a:hover{
-background:rgba(255,0,0,.12);
+background:rgba(255,204,41,.12);
 color:var(--red-light);
 }
 
@@ -226,7 +228,7 @@ transition:.35s;
 .card:hover{
 transform:translateY(-8px);
 box-shadow:
-0 0 25px rgba(255,0,0,.25);
+0 0 25px rgba(255,204,41,.25);
 }
 
 .card img{
@@ -391,7 +393,7 @@ display:block;
 }
 
 .pay-card{
-    background:#d40000;
+    background:linear-gradient( 135deg, #ffcc29, #ff7a00, #b347ff );
     color:#fff;
     padding:15px;
     border-radius:12px;
@@ -439,7 +441,7 @@ transition:.3s;
 
 .review-card:hover{
 transform:translateY(-3px);
-box-shadow:0 0 20px rgba(255,0,0,.15);
+box-shadow:0 0 20px rgba(255,204,41,.20);
 }
 
 .review-header{
@@ -517,7 +519,7 @@ text-align:right;
 
 .banner-badge{
 display:inline-block;
-background:#d40000;
+background:linear-gradient( 135deg, #ffcc29, #ff7a00, #b347ff );
 color:#fff;
 padding:12px 25px;
 border-radius:50px;
