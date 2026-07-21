@@ -6,16 +6,24 @@ font-family:'Cairo',sans-serif;
 }
 
 :root{
---red:#ffcc29;
---red-light:#ff7a00;
---purple:#b347ff;
---orange:#ff7a00;
---purple:#b347ff;
---bg:#050505;
---card:#101010;
---border:#222;
---text:#ffffff;
---gray:#999;
+    --red:#ffcc29;
+    --red-light:#ff7a00;
+    --orange:#ff7a00;
+    --purple:#b347ff;
+
+    /* التدرج الرئيسي */
+    --gradient:linear-gradient(
+        135deg,
+        #ffcc29 0%,
+        #ff7a00 50%,
+        #b347ff 100%
+    );
+
+    --bg:#050505;
+    --card:#101010;
+    --border:#222;
+    --text:#ffffff;
+    --gray:#999;
 }
 
 body{
