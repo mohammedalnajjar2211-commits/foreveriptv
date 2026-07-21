@@ -7,7 +7,8 @@ font-family:'Cairo',sans-serif;
 
 :root{
 --red:#ffcc29;
---red-light:#ffcc29;
+--red-light:#ff7a00;
+--purple:#b347ff;
 --orange:#ff7a00;
 --purple:#b347ff;
 --bg:#050505;
