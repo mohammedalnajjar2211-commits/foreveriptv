@@ -127,28 +127,40 @@ button.main-btn {
     width: 60%;
     max-width: 250px;
     padding: 14px;
-    background: var(--button-color);
+    background: linear-gradient(
+        135deg,
+        #ffcc29 0%,
+        #ff7a00 50%,
+        #b347ff 100%
+    );
     border: none;
-    color: white;
+    color: #fff;
     font-size: 18px;
     border-radius: 10px;
     cursor: pointer;
     margin: 20px auto 0 auto;
-    transition: 0.3s transform, 0.3s background, 0.3s box-shadow;
+    transition: 0.3s transform, 0.3s box-shadow;
     font-weight: bold;
     display: block;
-    box-shadow: 0 4px 10px rgba(0,130,226,0.3);
+    box-shadow: 0 4px 15px rgba(255,122,0,0.35);
 }
 
 button.main-btn:hover {
-    background: var(--button-hover);
-    box-shadow: 0 0 25px var(--button-glow), 0 6px 14px rgba(0,130,226,0.4);
+    background: linear-gradient(
+        135deg,
+        #ffd84d 0%,
+        #ff8f1f 50%,
+        #c25cff 100%
+    );
+    box-shadow:
+        0 0 25px rgba(179,71,255,0.45),
+        0 6px 14px rgba(255,122,0,0.35);
     transform: translateY(-2px) scale(1.03);
 }
 
 button.main-btn:active {
     transform: translateY(0) scale(0.97);
-    box-shadow: 0 2px 6px var(--button-glow);
+    box-shadow: 0 2px 8px rgba(179,71,255,0.35);
 }
 
 .result {
