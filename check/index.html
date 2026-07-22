@@ -222,7 +222,7 @@ button.main-btn:active {
 <div class="top-controls">
     <button class="top-btn" onclick="toggleLang()" id="langBtn">
         <span id="langText">EN</span>
-        <img class="flag" id="flagImg" src="/check/flag-of-USA.png" alt="Flag">
+        <img class="flag" id="flagImg" src="https://familyiptv.net/check/flag-of-USA.png" alt="Flag">
     </button>
     <button class="top-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </div>
@@ -267,7 +267,7 @@ function toggleLang() {
     if (currentLang === "en") {
         document.documentElement.setAttribute("dir", "ltr");
         langBtnText.textContent = "AR";
-        flagImg.src = "/check/flag-of-Iraq.png"; // علم إنجليزي Base64
+        flagImg.src = "https://familyiptv.net/check/flag-of-Iraq.png"; // علم إنجليزي Base64
         document.getElementById("title").textContent = "Check IPTV Subscription";
         document.getElementById("user").placeholder = "Username";
         document.getElementById("pass").placeholder = "Password";
