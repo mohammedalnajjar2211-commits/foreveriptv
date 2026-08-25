@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>سيرفر فوريفر | Forever IPTV - اشتراك IPTV بجودة عالية</title>
+  <meta name="description" content="سيرفر فوريفر Forever IPTV يقدم اشتراكات IPTV بجودة عالية وثبات ممتاز، مع تفعيل سريع ودعم فني للمشتركين.">
+  <meta name="keywords" content="Forever IPTV, سيرفر فوريفر, اشتراك IPTV, IPTV العراق, سيرفر IPTV">
+  <meta name="author" content="Forever IPTV">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <link rel="canonical" href="https://forever-iptv.com/">
+  <link rel="icon" href="assets/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Forever IPTV">
+  <meta property="og:title" content="Forever IPTV | اشتراك IPTV بجودة عالية">
+  <meta property="og:description" content="اشتراك IPTV بجودة عالية وثبات ممتاز، مع تفعيل سريع ودعم فني.">
+  <meta property="og:url" content="https://forever-iptv.com/">
+  <meta property="og:image" content="https://forever-iptv.com/assets/12months.jpg">
+  <meta property="og:locale" content="ar_IQ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#6d28d9;
+      --primary-2:#8b5cf6;
+      --primary-3:#a78bfa;
+      --accent:#7c3aed;
+      --bg:#08070d;
+      --bg-2:#100d19;
+      --card:#151020;
+      --card-2:#1d162b;
+      --text:#fff;
+      --muted:#b8afca;
+      --line:rgba(167,139,250,.18);
+      --success:#22c55e;
+      --radius:22px;
+      --shadow:0 18px 55px rgba(73,35,139,.28);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(109,40,217,.25), transparent 31%),
+        radial-gradient(circle at 5% 35%, rgba(124,58,237,.12), transparent 32%),
+        var(--bg);
+      color:var(--text);
+      font-family:"Tajawal",sans-serif;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input{font-family:inherit}
+    .container{width:min(1180px,calc(100% - 28px));margin:auto}
+
+    /* TOPBAR */
+    .topbar{
+      background:linear-gradient(90deg,#4c1d95,#7c3aed,#5b21b6);
+      color:#fff;
+      padding:8px 15px;
+      text-align:center;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 5px 25px rgba(76,29,149,.28);
+    }
+
+    /* HEADER */
+    .header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(8,7,13,.86);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-row{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      font-size:22px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .brand-logo{
+      width:43px;
+      height:43px;
+      object-fit:contain;
+      border-radius:11px;
+      flex:0 0 auto;
+    }
+    .brand > span:nth-child(2){
+      background:linear-gradient(90deg,#ff8a00,#ff4d4d,#d95bb7);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
+    }
+    .brand b{color:inherit}
+    .verified-badge{
+      display:inline-grid;
+      place-items:center;
+      width:19px;height:19px;
+      margin-right:2px;
+      border-radius:50%;
+      background:#1d9bf0;
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      line-height:1;
+      box-shadow:0 0 0 2px rgba(29,155,240,.12);
+      flex:0 0 auto;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:5px;
+    }
+    .nav a{
+      color:#ded9e7;
+      font-size:14px;
+      font-weight:700;
+      padding:9px 11px;
+      border-radius:11px;
+      transition:.25s ease;
+    }
+    .nav a:hover{
+      color:#fff;
+      background:rgba(124,58,237,.14);
+    }
+    .menu-btn{
+      display:none;
+      width:42px;height:42px;
+      color:#fff;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:12px;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    /* MOBILE MENU */
+    .mobile-nav{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      background:rgba(4,3,8,.76);
+      backdrop-filter:blur(10px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s;
+    }
+    .mobile-nav.open{opacity:1;pointer-events:auto}
+    .mobile-panel{
+      position:absolute;
+      top:0;right:0;
+      height:100%;
+      width:min(340px,88%);
+      background:#100c18;
+      border-left:1px solid var(--line);
+      padding:24px;
+      transform:translateX(100%);
+      transition:.3s;
+    }
+    .mobile-nav.open .mobile-panel{transform:none}
+    .mobile-panel-head{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:25px;
+    }
+    .close-btn{
+      width:40px;height:40px;border:1px solid var(--line);
+      border-radius:12px;background:var(--card);color:#fff;font-size:20px;
+    }
+    .mobile-panel a{
+      display:block;
+      padding:12px 11px;
+      border-bottom:1px solid rgba(255,255,255,.055);
+      font-weight:700;
+    }
+
+    /* HERO */
+    .hero{padding:72px 0 38px;text-align:center}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#ded2ff;
+      background:rgba(124,58,237,.11);
+      border:1px solid rgba(167,139,250,.22);
+      border-radius:999px;
+      padding:7px 13px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+    .hero h1{
+      max-width:920px;
+      margin:0 auto 17px;
+      font-size:clamp(30px,5vw,53px);
+      line-height:1.28;
+      font-weight:900;
+      letter-spacing:-1.3px;
+    }
+    .hero h1 span{
+      background:linear-gradient(90deg,#c4b5fd,#8b5cf6,#ddd6fe);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero p{
+      margin:0 auto;
+      max-width:840px;
+      color:var(--muted);
+      font-size:clamp(15px,2vw,18px);
+    }
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:49px;
+      padding:0 22px;
+      border-radius:14px;
+      font-weight:900;
+      border:1px solid transparent;
+      transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(90deg,#ff8a00,#ff4d4d,#d95bb7);
+      box-shadow:0 12px 28px rgba(217,91,183,.28);
+    }
+    .btn-ghost{
+      color:#e9e4f1;
+      border-color:var(--line);
+      background:rgba(255,255,255,.035);
+    }
+
+    /* SEARCH */
+    .search-wrap{margin:0 auto 34px;width:min(580px,100%)}
+    .search-box{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(21,16,32,.9);
+      border:1px solid var(--line);
+      padding:0 15px;
+      border-radius:16px;
+      min-height:54px;
+      box-shadow:var(--shadow);
+    }
+    .search-box input{
+      width:100%;
+      border:0;
+      outline:0;
+      color:#fff;
+      background:transparent;
+      font-size:15px;
+    }
+    .search-box input::placeholder{color:#8f879d}
+
+    /* SECTIONS */
+    .section{padding:52px 0}
+    .section-head{text-align:center;margin-bottom:27px}
+    .section-head small{
+      color:var(--primary-3);
+      font-weight:900;
+      display:block;
+      margin-bottom:5px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(25px,4vw,35px);
+      font-weight:900;
+    }
+    .section-head p{
+      margin:8px auto 0;
+      color:var(--muted);
+      max-width:700px;
+    }
+
+    /* PRODUCTS */
+    .products{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .product{
+      position:relative;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.025),transparent),
+        var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:.3s ease;
+      box-shadow:0 15px 45px rgba(0,0,0,.24);
+    }
+    .product:hover{
+      transform:translateY(-6px);
+      border-color:rgba(167,139,250,.45);
+      box-shadow:0 22px 60px rgba(85,42,150,.28);
+    }
+    .badge{
+      position:absolute;
+      top:14px;right:14px;
+      z-index:2;
+      background:linear-gradient(135deg,#facc15,#f59e0b);
+      color:#241800;
+      border-radius:999px;
+      padding:6px 11px;
+      font-size:12px;
+      font-weight:900;
+    }
+    .product-image{
+      height:238px;
+      overflow:hidden;
+      background:#0c0911;
+      border-bottom:1px solid var(--line);
+    }
+    .product-image img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transition:.35s;
+    }
+    .product:hover .product-image img{transform:scale(1.035)}
+    .product-body{padding:21px}
+    .product h3{margin:0 0 6px;font-size:21px}
+    .product-sub{color:var(--muted);font-size:14px;margin:0 0 15px}
+    .feature-list{
+      display:grid;
+      gap:8px;
+      margin:0 0 17px;
+      padding:0;
+      list-style:none;
+      color:#e4dfee;
+      font-size:13px;
+      font-weight:600;
+    }
+    .feature-list li{display:flex;gap:7px;align-items:flex-start}
+    .pricing{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin:17px 0;
+    }
+    .price{
+      font-weight:900;
+      font-size:30px;
+      color:#fff;
+    }
+    .old-price{
+      text-decoration:line-through;
+      color:#80778d;
+      font-weight:700;
+    }
+    .discount{
+      background:rgba(34,197,94,.12);
+      color:#86efac;
+      border:1px solid rgba(34,197,94,.18);
+      font-size:12px;
+      font-weight:900;
+      border-radius:8px;
+      padding:4px 7px;
+    }
+    .iqd{
+      width:100%;
+      color:#c4b5fd;
+      font-weight:800;
+      font-size:14px;
+      margin-top:-6px;
+    }
+    .product-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+    }
+    .product-actions .btn{
+      min-height:44px;
+      padding:0 10px;
+      font-size:13px;
+    }
+
+    /* FEATURES */
+    .benefits{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    .benefit{
+      text-align:center;
+      padding:24px 14px;
+      border-radius:18px;
+      background:var(--card);
+      border:1px solid var(--line);
+    }
+    .benefit-icon{
+      width:53px;height:53px;
+      display:grid;place-items:center;
+      margin:0 auto 12px;
+      background:rgba(124,58,237,.13);
+      border:1px solid rgba(167,139,250,.18);
+      border-radius:16px;
+      font-size:24px;
+    }
+    .benefit strong{font-size:16px}
+
+    /* PAYMENT */
+    .payment-box{
+      max-width:900px;
+      margin:auto;
+      background:linear-gradient(135deg,rgba(109,40,217,.15),rgba(21,16,32,.9));
+      border:1px solid rgba(167,139,250,.25);
+      border-radius:24px;
+      padding:28px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .payment-box h2{margin:0 0 17px}
+    .payment-methods{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .payment-method{
+      background:rgba(255,255,255,.045);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:9px 14px;
+      font-weight:800;
+      font-size:14px;
+    }
+    .payment-note{color:var(--muted);font-size:13px;margin:16px 0 0}
+
+    /* FAQ */
+    .faq-wrap{
+      max-width:850px;
+      margin:auto;
+      display:grid;
+      gap:10px;
+    }
+    .faq{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:15px;
+      overflow:hidden;
+    }
+    .faq button{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:#fff;
+      padding:17px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      text-align:right;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .faq button span:last-child{
+      color:var(--primary-3);
+      font-size:21px;
+      transition:.25s;
+    }
+    .faq-content{
+      max-height:0;
+      overflow:hidden;
+      color:var(--muted);
+      font-size:14px;
+      transition:max-height .32s ease;
+    }
+    .faq-content p{padding:0 18px 18px;margin:0}
+    .faq.active .faq-content{max-height:250px}
+    .faq.active button span:last-child{transform:rotate(45deg)}
+
+    /* REVIEWS */
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    .review{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+    }
+    .review-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .review-name{font-weight:900}
+    .review-time{font-size:11px;color:#8d8499}
+    .stars{color:#fbbf24;letter-spacing:1px;margin:7px 0}
+    .review p{color:var(--muted);font-size:13px;margin:0}
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--line);
+      background:#07060b;
+      margin-top:45px;
+      padding:31px 0 24px;
+      text-align:center;
+    }
+    .footer-links{
+      display:flex;justify-content:center;flex-wrap:wrap;gap:9px 17px;
+      margin-bottom:16px;
+      color:#b9b0c5;
+      font-size:13px;
+    }
+    .footer-links a:hover{color:var(--primary-3)}
+    .socials{
+      display:flex;justify-content:center;gap:9px;margin:0 0 15px;
+    }
+    .social{
+      width:39px;height:39px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(167,139,250,.25);
+      color:#c4b5fd;
+      background:rgba(124,58,237,.08);
+      font-weight:900;
+    }
+    .copyright{font-size:13px;color:#88818f}
+
+    /* FLOATING WHATSAPP */
+    .wa-float{
+      position:fixed;
+      bottom:20px;right:20px;
+      width:58px;height:58px;
+      display:grid;place-items:center;
+      z-index:999;
+      border-radius:50%;
+      color:#fff;
+      font-size:27px;
+      background:linear-gradient(90deg,#ff8a00,#ff4d4d,#d95bb7);
+      box-shadow:0 12px 32px rgba(217,91,183,.34);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    @media(max-width:980px){
+      .nav{display:none}
+      .menu-btn{display:block}
+      .products{grid-template-columns:repeat(2,1fr)}
+      .benefits{grid-template-columns:repeat(2,1fr)}
+      .reviews{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:680px){
+      .brand-logo{display:none}
+      .topbar{font-size:11px}
+      .hero{padding-top:48px}
+      .products{grid-template-columns:1fr}
+      .benefits{grid-template-columns:1fr 1fr}
+      .reviews{grid-template-columns:1fr}
+      .product-image{height:220px}
+      .product-actions{grid-template-columns:1fr}
+      .brand{font-size:18px}
+    }
+
+    @media(max-width:420px){
+      .benefits{grid-template-columns:1fr}
+      .hero h1{font-size:29px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Forever IPTV",
+    "alternateName":"سيرفر فوريفر",
+    "url":"https://forever-iptv.com/",
+    "logo":"https://forever-iptv.com/assets/favicon.png",
+    "contactPoint":{
+      "@type":"ContactPoint",
+      "telephone":"+9647736612225",
+      "contactType":"customer service",
+      "availableLanguage":["Arabic","English"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Forever IPTV",
+    "url":"https://forever-iptv.com/"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">⚡ سيرفر فوريفر — تفعيل سريع • جودة عالية • دعم فني للمشتركين</div>
+
+  <header class="header">
+    <div class="container header-row">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="assets/logo.png" alt="Forever IPTV Logo">
+        <span>سيرفر <b>فوريفر</b></span><span class="verified-badge" title="موثق" aria-label="موثق">✓</span>
+      </a>
+
+      <nav class="nav">
+        <a href="/">الرئيسية</a>
+        <a href="https://apps.forever-iptv.com/">التطبيقات</a>
+        <a href="/check/iptv.html">افحص اشتراكك</a>
+        <a href="/guide">دليل التثبيت</a>
+        <a href="/speedtest">فحص السرعة</a>
+        <a href="/support">الدعم الفني</a>
+        <a href="https://wa.me/9647736612225">اتصل بنا</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="القائمة">☰</button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-panel">
+      <div class="mobile-panel-head">
+        <div class="brand"><img class="brand-logo" src="assets/logo.png" alt="Forever IPTV Logo"><span>FOREVER IPTV</span><span class="verified-badge" title="موثق" aria-label="موثق">✓</span></div>
+        <button class="close-btn" id="closeMenu">✕</button>
+      </div>
+      <a href="/">الرئيسية</a>
+      <a href="https://apps.forever-iptv.com/">التطبيقات</a>
+      <a href="/check/iptv.html">افحص اشتراكك</a>
+      <a href="/guide">دليل التثبيت والدعم</a>
+      <a href="/speedtest">أداة فحص سرعة الإنترنت</a>
+      <a href="/support">الدعم الفني</a>
+      <a href="https://wa.me/9647736612225">اتصل بنا</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">💜 FOREVER IPTV</span>
+        <h1>⚡ سيرفر فوريفر IPTV | <span>اشتراك IPTV بجودة عالية وثبات ممتاز</span></h1>
+        <p>اشتراك IPTV بجودة عالية وثبات ممتاز، مع قنوات عربية وعالمية، رياضية وترفيهية، وأفلام ومسلسلات، مع تفعيل سريع ودعم فني للمشتركين.</p>
+
+        <div class="hero-actions">
+          <a href="#packages" class="btn btn-primary">تصفح الباقات ←</a>
+          <a href="https://wa.me/9647736612225" class="btn btn-ghost">تواصل عبر واتساب</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="search-wrap">
+        <div class="search-box">
+          <span>⌕</span>
+          <input type="search" id="productSearch" placeholder="ابحث عن منتج..." aria-label="بحث">
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="packages">
+      <div class="container">
+        <div class="section-head">
+          <small>باقات FOREVER IPTV</small>
+          <h2>اختر الاشتراك المناسب لك</h2>
+          <p>باقات مرنة مع تفعيل سريع ودعم فني للمشتركين.</p>
+        </div>
+
+        <div class="products" id="productGrid">
+          <article class="product" data-name="اشتراك فوريفر 12 شهر سنة">
+            <span class="badge">⭐ الأكثر مبيعًا</span>
+            <div class="product-image">
+              <img src="assets/12months.jpg" alt="اشتراك Forever IPTV لمدة 12 شهر" onerror="this.src='assets/12months.png'">
+            </div>
+            <div class="product-body">
+              <h3>اشتراك فوريفر لمدة 12 شهر</h3>
+              <p class="product-sub">اشتراك سنوي بجودة عالية وثبات ممتاز</p>
+              <ul class="feature-list">
+                <li>✅ قنوات عربية وعالمية متنوعة</li>
+                <li>⚡ تفعيل سريع ودعم فني</li>
+                <li>🎬 أفلام ومسلسلات متنوعة</li>
+                <li>📺 يعمل على الأجهزة المتوافقة</li>
+              </ul>
+              <div class="pricing">
+                <span class="price">$40</span>
+                <span class="old-price">$60</span>
+                <span class="discount">-33%</span>
+                <span class="iqd">25,000 IQD</span>
+              </div>
+              <div class="product-actions">
+                <a href="/product.html?id=12" class="btn btn-ghost">التفاصيل 🔎</a>
+                <a href="https://wa.me/9647736612225?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%88%D8%B1%D9%8A%D9%81%D8%B1%20%D9%84%D9%85%D8%AF%D8%A9%2012%20%D8%B4%D9%87%D8%B1" class="btn btn-primary">اطلب الآن</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-name="اشتراك فوريفر 6 اشهر أشهر نصف سنة">
+            <div class="product-image">
+              <img src="assets/6months.jpg" alt="اشتراك Forever IPTV لمدة 6 أشهر" onerror="this.src='assets/12months.jpg'">
+            </div>
+            <div class="product-body">
+              <h3>اشتراك فوريفر لمدة 6 أشهر</h3>
+              <p class="product-sub">جودة عالية ودعم فني للمشتركين</p>
+              <ul class="feature-list">
+                <li>✅ قنوات عربية وعالمية متنوعة</li>
+                <li>⚡ تفعيل سريع ودعم فني</li>
+                <li>🎬 أفلام ومسلسلات متنوعة</li>
+                <li>📺 يعمل على الأجهزة المتوافقة</li>
+              </ul>
+              <div class="pricing">
+                <span class="price">$30</span>
+                <span class="old-price">$40</span>
+                <span class="discount">-25%</span>
+                <span class="iqd">20,000 IQD</span>
+              </div>
+              <div class="product-actions">
+                <a href="/product.html?id=6" class="btn btn-ghost">التفاصيل 🔎</a>
+                <a href="https://wa.me/9647736612225?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%88%D8%B1%D9%8A%D9%81%D8%B1%20%D9%84%D9%85%D8%AF%D8%A9%206%20%D8%A7%D8%B4%D9%87%D8%B1" class="btn btn-primary">اطلب الآن</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-name="اشتراك فوريفر شهر 1 شهر شهري">
+            <div class="product-image">
+              <img src="assets/1month.jpg" alt="اشتراك Forever IPTV لمدة شهر" onerror="this.src='assets/12months.jpg'">
+            </div>
+            <div class="product-body">
+              <h3>اشتراك فوريفر لمدة شهر</h3>
+              <p class="product-sub">باقة شهرية مرنة للتجربة والاستخدام القصير</p>
+              <ul class="feature-list">
+                <li>✅ قنوات عربية وعالمية متنوعة</li>
+                <li>⚡ تفعيل سريع ودعم فني</li>
+                <li>🎬 أفلام ومسلسلات متنوعة</li>
+                <li>📺 يعمل على الأجهزة المتوافقة</li>
+              </ul>
+              <div class="pricing">
+                <span class="price">$10</span>
+                <span class="old-price">$15</span>
+                <span class="discount">-33%</span>
+                <span class="iqd">10,000 IQD</span>
+              </div>
+              <div class="product-actions">
+                <a href="/product.html?id=1" class="btn btn-ghost">التفاصيل 🔎</a>
+                <a href="https://wa.me/9647736612225?text=%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%88%D8%B1%D9%8A%D9%81%D8%B1%20%D9%84%D9%85%D8%AF%D8%A9%20%D8%B4%D9%87%D8%B1" class="btn btn-primary">اطلب الآن</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="benefits">
+          <div class="benefit"><div class="benefit-icon">⚡</div><strong>تفعيل سريع</strong></div>
+          <div class="benefit"><div class="benefit-icon">🛡️</div><strong>دعم فني</strong></div>
+          <div class="benefit"><div class="benefit-icon">📺</div><strong>جودة عالية</strong></div>
+          <div class="benefit"><div class="benefit-icon">💳</div><strong>أسعار ممتازة</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="payment-box">
+          <h2>💳 وسائل الدفع المتوفرة</h2>
+          <div class="payment-methods">
+            <span class="payment-method">💳 كي كارد</span>
+            <span class="payment-method">💳 ماستر كارد</span>
+            <span class="payment-method">💳 زين كاش</span>
+            <span class="payment-method">💳 آسيا حوالة</span>
+          </div>
+          <p class="payment-note">بعد إتمام الطلب سيتم التواصل معك عبر واتساب لتأكيد الدفع وتفعيل الاشتراك.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <small>الأسئلة الشائعة</small>
+          <h2>كل ما تحتاج إلى معرفته</h2>
+          <p>إجابات سريعة على أكثر الأسئلة شيوعًا حول الخدمة والاشتراك.</p>
+        </div>
+
+        <div class="faq-wrap">
+          <div class="faq">
+            <button><span>هل تقدمون اتصالاً متعدد الأجهزة؟</span><span>+</span></button>
+            <div class="faq-content"><p>لا يمكن استخدام اشتراك واحد على أجهزة متعددة في نفس الوقت. تتوفر خيارات مناسبة لمن يحتاج أكثر من اتصال.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>هل الإعداد سهل؟</span><span>+</span></button>
+            <div class="faq-content"><p>نعم، إعداد خدمة FOREVER IPTV بسيط، ويمكن لفريق الدعم مساعدتك في خطوات الإعداد على الجهاز المتوافق.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>هل تقدمون محتوى للبالغين؟</span><span>+</span></button>
+            <div class="faq-content"><p>لا، FOREVER لا تقدم محتوى للبالغين.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>هل تقدمون استرداداً للمبلغ؟</span><span>+</span></button>
+            <div class="faq-content"><p>تطبق سياسة الاسترداد المنشورة في الموقع. يرجى مراجعة صفحة سياسة الاسترداد لمعرفة الشروط والتفاصيل.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>ما سرعة الإنترنت المطلوبة؟</span><span>+</span></button>
+            <div class="faq-content"><p>ننصح بسرعة مستقرة لا تقل عن 10 ميغابت في الثانية. كلما كان الاتصال أكثر استقراراً كانت تجربة المشاهدة أفضل.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>ما التطبيق الذي يعمل معه FOREVER؟</span><span>+</span></button>
+            <div class="faq-content"><p>الاشتراك يعمل على الأجهزة والتطبيقات المتوافقة، ويمكن للدعم إرشادك إلى التطبيق الأنسب لجهازك.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>متى سيتم تفعيل اشتراكي؟</span><span>+</span></button>
+            <div class="faq-content"><p>يتم إرسال بيانات التفعيل بعد إكمال الطلب وتأكيد الدفع، وغالباً خلال وقت قصير.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>هل يمكنكم المساعدة في الإعداد؟</span><span>+</span></button>
+            <div class="faq-content"><p>نعم، تواصل مع الدعم عبر واتساب للحصول على مساعدة في إعداد الخدمة على جهازك.</p></div>
+          </div>
+
+          <div class="faq">
+            <button><span>أواجه مشاكل تقطيع. ما السبب؟</span><span>+</span></button>
+            <div class="faq-content"><p>تحقق من سرعة الإنترنت واستقرار الشبكة وأعد تشغيل الراوتر والجهاز. إذا استمرت المشكلة تواصل مع الدعم لإجراء الفحص المناسب.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <small>تقييمات موثقة</small>
+          <h2>⭐ آراء العملاء</h2>
+        </div>
+
+        <div class="reviews">
+          <article class="review">
+            <div class="review-head"><span class="review-name">حسين ليث ✅</span><span class="review-time">منذ 3 أيام</span></div>
+            <div class="stars">★★★★★</div>
+            <p>ممتاز جداً والخدمة سريعة والتفعيل تم خلال دقائق.</p>
+          </article>
+          <article class="review">
+            <div class="review-head"><span class="review-name">جعفر صادق ✅</span><span class="review-time">منذ 4 أيام</span></div>
+            <div class="stars">★★★★★</div>
+            <p>الخدمة ممتازة من ناحية الجودة والثبات وخدمة ما بعد البيع.</p>
+          </article>
+          <article class="review">
+            <div class="review-head"><span class="review-name">حيدر عمران ✅</span><span class="review-time">منذ 5 أيام</span></div>
+            <div class="stars">★★★★★</div>
+            <p>سيرفر قوي وسعر مناسب ودعم فني متواصل.</p>
+          </article>
+          <article class="review">
+            <div class="review-head"><span class="review-name">حسين مرتضى ✅</span><span class="review-time">منذ 7 أيام</span></div>
+            <div class="stars">★★★★★</div>
+            <p>أشكركم على سرعة الاستجابة والاهتمام بالزبون.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="socials">
+        <a class="social" href="https://wa.me/9647736612225" aria-label="WhatsApp">W</a>
+        <a class="social" href="#" aria-label="Instagram">I</a>
+        <a class="social" href="#" aria-label="TikTok">T</a>
+        <a class="social" href="#" aria-label="Telegram">↗</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="/terms.html">الشروط والأحكام</a>
+        <a href="/privacy.html">سياسة الخصوصية</a>
+        <a href="/refund.html">سياسة الاسترداد</a>
+        <a href="/dmca.html">DMCA</a>
+      </div>
+
+      <div class="copyright">موقع سيرفر فوريفر الرسمي © 2026</div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/9647736612225" aria-label="واتساب">✆</a>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeMenu = document.getElementById('closeMenu');
+
+    menuBtn.addEventListener('click', () => mobileNav.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) mobileNav.classList.remove('open');
+    });
+
+    document.querySelectorAll('.faq button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq');
+        document.querySelectorAll('.faq').forEach(other => {
+          if (other !== item) other.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      });
+    });
+
+    const search = document.getElementById('productSearch');
+    search.addEventListener('input', () => {
+      const value = search.value.trim().toLowerCase();
+      document.querySelectorAll('.product').forEach(card => {
+        const name = (card.dataset.name || '').toLowerCase();
+        card.style.display = name.includes(value) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
