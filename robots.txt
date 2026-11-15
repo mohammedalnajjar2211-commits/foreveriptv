@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://forever-iptv.com/sitemap.xml

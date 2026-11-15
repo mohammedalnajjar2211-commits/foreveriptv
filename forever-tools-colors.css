@@ -1,0 +1,48 @@
+﻿/* Forever IPTV - Tools color palette */
+
+/* Check subscription and renewal reminder */
+body:has(input[type="password"]) main {
+  --tool-dark: #170b25;
+  --tool-purple: #35145b;
+  --tool-accent: #8b35e8;
+}
+
+body:has(input[type="password"]) main section {
+  border-color: rgba(137, 79, 192, .3);
+}
+
+/* Common dark tool cards */
+body:has(input[type="password"]) main form {
+  accent-color: #8b35e8;
+}
+
+/* Inputs */
+body:has(input[type="password"]) main input {
+  border-color: #624075;
+}
+
+/* Main action buttons */
+body:has(input[type="password"]) main button[type="submit"] {
+  background: linear-gradient(110deg,#ff921c,#ff6366,#e83fa0) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+/* Speed test gauge and action accents */
+body:has([class*="speed"]) main {
+  --navy: #1b0d2d;
+  --blue: #7c2ae8;
+  --primary: #7c2ae8;
+  --accent: #9d4df2;
+}
+
+/* Shared tool hero backgrounds */
+body:has([class*="speed"]) main .hero {
+  background: linear-gradient(120deg,#10091d,#35145b,#180b2b) !important;
+}
+
+/* Accent colors */
+body:has([class*="speed"]) main [class*="gauge"] {
+  color: #8738e8;
+  border-color: #8738e8;
+}
